@@ -38,6 +38,24 @@
     border-radius: 6px;
     font-weight: 600;
   }
+
+    /* 홈으로 */
+  .back-home {
+    text-align: center;
+    margin-top: 30px;
+  }
+  .back-home a {
+    color: #4a3f35;
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 8px 14px;
+    border-radius: 6px;
+    background: #e8ded7;
+    transition: background 0.2s ease;
+  }
+  .back-home a:hover {
+    background: #d8c7b9;
+  }
 </style>
 </head>
 <body>
@@ -51,10 +69,13 @@
     <span class="highlight">사진사</span> →
     <span class="highlight">모델</span> →
     <span class="highlight">하늘</span>
-    순서로 일렬이 되어야 합니다.
+    순서로 하면 파란하늘 배경의 모델을 찍을 수 있습니다.
   </p>
+</div>
+
+<div class="back-home">
+  <a href="javascript:history.back()">이전 페이지로 돌아가기</a>
 </div>
 
 </body>
 </html>
-
