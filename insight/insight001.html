@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[2026.2월 다주택자의 주택 양도]</title>
+
+  <style>
+    body {
+      font-family: "Pretendard", "Noto Sans KR", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f3ef;
+      color: #3a3a3a;
+      line-height: 1.7;
+    }
+
+    /* 상단 제목 영역 */
+    header {
+      background: linear-gradient(135deg, #e8dcd3, #f4ece7);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #e0d6cf;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #4a3f35;
+    }
+
+    /* 본문 */
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #ffffff;
+      padding: 30px 26px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #f0e8e2;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #4a3f35;
+      border-left: 6px solid #d8c7b9;
+      padding-left: 12px;
+      margin-top: 0;
+    }
+
+    p {
+      margin-bottom: 18px;
+      color: #4f463f;
+    }
+
+    /* 네비게이션 */
+    .post-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      font-size: 0.95rem;
+    }
+
+    .post-nav a {
+      color: #6b5b51;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .post-nav a:hover {
+      background: #e8ded7;
+    }
+
+    /* 홈으로 */
+    .back-home {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .back-home a {
+      color: #4a3f35;
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: #e8ded7;
+      transition: background 0.2s ease;
+    }
+
+    .back-home a:hover {
+      background: #d8c7b9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>[2026.2월 다주택자의 주택 양도]</h1>
+  </header>
+
+  <main>
+    <p>
+      (주의 : 본 내용은 FPC의 의견이며 실제와 다를 수 있습니다.)<br>
+      2025.10.15 정부의 부동산 정책 발표와 2026.2월 전후 주택공급 대책으로 시장 변화가 감지되고 있습니다.
+      <a href="https://www.chosun.com/economy/real_estate/2025/10/16/OROWJ7P6HRFPDM4RRMNITSJDKI/">2025.10.15 
+        정부대책 관련기사</a>를 보면 주택에 대한 투기 및 투자 요소를 제거하려는 것이 보이는데 이는 현재의 
+        주택거래에 대한 대책이 될 수도 있겠지만 향후 공급되는 주택에 대해서도 이런 요소를 제거하기 위한 
+        선제적 조치로 해석될 수 있습니다. 일명 10.15 대책 이후 정부는 다각도의 부동산 대책을 발표 또는 시행하고 
+        있는데 2026.2월 현재 기존의 주택공급 대책에 더하여 다주택자의 주택양도를 유도하기 위한 세금대책이 
+        주요 정책 중 하나임을 확인할 수 있습니다<a href="https://re.mk.co.kr/news/news_detail.php?no=11970640">
+        -관련기사 참조-</a>. 여기서 주목 해봐야 할 것은 정부에서 부동산관련 세제정책 방향을 제시하면서 언급한 
+        내용을 보면 "부동산 공급대책은 새로 지어서 공급하는 것도 방법이지만 다주택자의 주택 양도도 공급대책 중 
+        하나"라고 한 것입니다. 주택시장도 수요와 공급의 원칙에서 예외일 수 없고, 공급이 늘어나면 가격이 
+        떨어질 수 밖에 없습니다. 현 정부는 주택가격 안정을 위해 주택공급을 목표로 세운 것으로 생각되며 
+        이를 위해 주택공급의 한 축인 다주택자의 주택 양도를 유도하기 위해 세제정책을 조율하고 있는 것으로 
+        판단됩니다.
+    </p><br><br>
+
+    <!-- 이전/다음 글 네비게이션 -->
+    <div class="post-nav">
+      <a href="#" onclick="goPrev()">← 이전 글</a>
+      <a href="#" onclick="goNext()">다음 글 →</a>
+    </div>
+
+    <!-- 홈으로 돌아가기 -->
+    <div class="back-home">
+      <a href="../index.html">홈으로 돌아가기</a>
+    </div>
+
+    <script>
+      const fullPath = window.location.pathname;
+      const currentFile = fullPath.split('/').pop();
+      const basePath = fullPath.replace(currentFile, "");
+      const currentNum = parseInt(currentFile.match(/\d+/)[0], 10);
+
+      const move = (offset) => {
+        const next = currentNum + offset;
+        if (next < 1) return alert("첫 번째 글입니다.");
+
+        const target = `${basePath}case${String(next).padStart(3, '0')}.html`;
+
+        fetch(target)
+          .then(res => res.ok ? location.href = target : alert("마지막 글입니다."))
+          .catch(() => alert("해당 글이 없습니다."));
+      };
+
+      const goPrev = () => move(-1);
+      const goNext = () => move(1);
+    </script>
+  </main>
+</body>
+</html>

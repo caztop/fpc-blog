@@ -221,7 +221,7 @@
         const target = `${basePath}case${String(next).padStart(3, '0')}.html`;
 
         fetch(target)
-          .then(res => res.ok ? location.href = target : alert("해당 글이 없습니다."))
+          .then(res => res.ok ? location.href = target : alert("마지막 글입니다."))
           .catch(() => alert("해당 글이 없습니다."));
       };
 
