@@ -159,14 +159,18 @@
 </header>
 
 <nav>
-  <a onclick="showPage('case')">상담 사례</a>
-  <a onclick="showPage('insight')">금융 인사이트</a>
-  <a onclick="showPage('essay')">돈에 대한 생각</a>
-  <a onclick="showPage('small')">기타 잡다한 이야기</a>
+  <a onclick="showPage('case')" id="tab-case">상담 사례</a>
+  <a onclick="showPage('insight')" id="tab-insight">금융 인사이트</a>
+  <a onclick="showPage('essay')" id="tab-essay">돈에 대한 생각</a>
+  <a onclick="showPage('small')" id="tab-small">기타 잡다한 이야기</a>
+  <div></div>
+  <div></div>
 
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="검색..." onkeyup="searchPosts()">
   </div>
+
+  <div id="searchNotice" style="text-align:center; margin-top:10px; color:#6b5b51; font-size:0.9rem; display:none;"></div>
 </nav>
 
 <main>
@@ -267,12 +271,67 @@
   // 검색 기능
   function searchPosts() {
     const keyword = document.getElementById('searchInput').value.toLowerCase();
-    const sections = document.querySelectorAll('.page-section ul li');
+    const pages = document.querySelectorAll('.page-section');
+    const notice = document.getElementById('searchNotice');
 
-    sections.forEach(item => {
-      const text = item.innerText.toLowerCase();
-      item.style.display = text.includes(keyword) ? "block" : "none";
+    // 탭 이름 매핑
+    const names = {
+      case: "상담 사례",
+      insight: "금융 인사이트",
+      essay: "돈에 대한 생각",
+      small: "기타 이야기"
+    };
+
+    // 탭별 검색 결과 개수 저장
+    let counts = {
+      case: 0,
+      insight: 0,
+      essay: 0,
+      small: 0
+    };
+
+    pages.forEach(page => {
+      const pageId = page.id;
+      const items = page.querySelectorAll('ul li');
+
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        const match = text.includes(keyword);
+
+        item.style.display = match ? "block" : "none";
+
+        if (match) {
+          counts[pageId]++;
+        }
+      });
     });
+
+    // 탭 옆에 숫자 표시
+    Object.keys(counts).forEach(id => {
+      const tab = document.getElementById(`tab-${id}`);
+      if (keyword.trim() === "") {
+        tab.innerText = names[id]; // 검색어 없으면 원래대로
+      } else {
+        tab.innerText = `${names[id]} (${counts[id]})`;
+      }
+    });
+
+    // 안내 메시지 표시
+    if (keyword.trim() === "") {
+      notice.style.display = "none";
+      return;
+    }
+
+    const foundTabs = Object.keys(counts).filter(id => counts[id] > 0);
+
+    if (foundTabs.length > 0) {
+      const readable = foundTabs.map(id => names[id]).join(", ");
+      notice.innerText = `검색 결과가 다음 탭에서 발견되었습니다: ${readable}`;
+      notice.style.display = "block";
+    } else {
+      notice.innerText = "검색 결과가 없습니다.";
+      notice.style.display = "block";
+    }
   }
 
   // 🔥 URL hash(#thoughts 등) 자동 인식 → 해당 탭 열기
