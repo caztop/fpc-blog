@@ -96,9 +96,8 @@
 </head>
 
 <body>
-
   <header>
-    <h1>[단체실손보험에서 개인실손보험으로 전환] 상담 사례</h1>
+    <h1 id="post-title"></h1>
   </header>
 
   <main>
@@ -161,32 +160,11 @@
 
     <!-- 홈으로 돌아가기 -->
     <div class="back-home">
-      <a href="../index.html">홈으로 돌아가기</a>
+      <a href="#" onclick="goHome()">홈으로 돌아가기</a>
     </div>
 
-    <script>
-      const fullPath = window.location.pathname;
-      const currentFile = fullPath.split('/').pop();
-      const basePath = fullPath.replace(currentFile, "");
-      const currentNum = parseInt(currentFile.match(/\d+/)[0], 10);
-
-      // 파일 prefix 자동 추출 (case, essay, insight 등)
-      const prefix = currentFile.replace(/\d+\.html/, "");
-
-      const move = (offset) => {
-      const next = currentNum + offset;
-      if (next < 1) return alert("첫 번째 글입니다.");
-
-      const target = `${basePath}${prefix}${String(next).padStart(3, '0')}.html`;
-
-      fetch(target)
-        .then(res => res.ok ? location.href = target : alert("마지막 글입니다."))
-        .catch(() => alert("해당 글이 없습니다."));
-    };
-
-    const goPrev = () => move(-1);
-    const goNext = () => move(1);
-    </script>
+    <!-- 공통 네비게이션 스크립트 -->
+    <script src="../common/post-nav.js"></script>
   </main>
 </body>
 </html>
