@@ -170,7 +170,6 @@
   <a onclick="showPage('essay')" id="tab-essay">돈에 대한 생각</a>
   <a onclick="showPage('small')" id="tab-small">기타 잡다한 이야기</a>
   <div></div>
-  <div></div>
 
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="검색..." onkeyup="searchPosts()">
@@ -294,19 +293,25 @@
       const items = page.querySelectorAll('ul li');
 
       items.forEach(item => {
-        const text = item.innerText.toLowerCase();
+     // 원본 HTML 저장 (한 번만)
+      if (!item.dataset.original) {
+        item.dataset.original = item.innerHTML;
+      }
+
+        const originalHTML = item.dataset.original;
+        const text = originalHTML.toLowerCase();
         const match = text.includes(keyword);
 
         if (keyword.trim() === "") {
           item.style.display = "block";
-          item.innerHTML = item.innerText;
+          item.innerHTML = originalHTML; // 원래 HTML 복원
           return;
         }
 
         if (match) {
           counts[pageId]++;
           const regex = new RegExp(`(${keyword})`, "gi");
-          item.innerHTML = item.innerText.replace(regex, `<mark>$1</mark>`);
+          item.innerHTML = originalHTML.replace(regex, `<mark>$1</mark>`);
           item.style.display = "block";
         } else {
           item.style.display = "none";
@@ -314,6 +319,7 @@
       });
     });
 
+    // 탭 옆 숫자 표시
     Object.keys(counts).forEach(id => {
       const tab = document.getElementById(`tab-${id}`);
       if (keyword.trim() === "") {
@@ -323,6 +329,7 @@
       }
     });
 
+    // 안내 메시지
     if (keyword.trim() === "") {
       notice.style.display = "none";
       return;
