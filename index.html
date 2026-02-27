@@ -38,7 +38,6 @@
       border-bottom: 1px solid #e0d6cf;
     }
 
-    /* 텍스트 뒤 반투명 박스 */
     .hero-text-box {
       position: absolute;
       top: 50%;
@@ -57,12 +56,6 @@
       font-size: 2rem;
     }
 
-    .hero-text-box p {
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    /* 네비게이션 */
     nav {
       background: #f0e8e2;
       padding: 12px 20px;
@@ -84,14 +77,26 @@
       background: #e8ded7;
     }
 
-    /* 메인 */
+    .search-box {
+      display: inline-block;
+      margin-left: 20px;
+    }
+
+    .search-box input {
+      padding: 6px 10px;
+      border: 1px solid #d3c7bf;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      background: #fff;
+      color: #4a3f35;
+    }
+
     main {
       max-width: 900px;
       margin: 30px auto;
       padding: 0 20px 50px;
     }
 
-    /* 페이지(섹션) */
     .page-section {
       display: none;
       background: #fff;
@@ -120,30 +125,18 @@
       font-size: 0.95rem;
     }
 
-    .case-link {
+    .case-link, .essay-link, .insight-link, .small-link {
       display: block;
       color: inherit;
       text-decoration: none;
       padding: 8px 0;
     }
 
-    .case-link:hover {
+    .case-link:hover,
+    .essay-link:hover,
+    .insight-link:hover,
+    .small-link:hover {
       text-decoration: underline;
-    }
-
-    /* 검색창 */
-    .search-box {
-      display: inline-block;
-      margin-left: 20px;
-    }
-
-    .search-box input {
-      padding: 6px 10px;
-      border: 1px solid #d3c7bf;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      background: #fff;
-      color: #4a3f35;
     }
 
     footer {
@@ -152,40 +145,6 @@
       color: #8a7f77;
       padding: 20px;
       margin-top: 40px;
-    }
-
-    /* 모바일 최적화 */
-    @media (max-width: 600px) {
-      header.hero-header {
-        height: 180px;
-      }
-
-      .hero-text-box {
-        padding: 12px 16px;
-      }
-
-      .hero-text-box h1 {
-        font-size: 1.5rem;
-      }
-
-      .hero-text-box p {
-        font-size: 0.9rem;
-      }
-
-      nav a {
-        display: inline-block;
-        margin: 6px 8px;
-        font-size: 0.9rem;
-      }
-
-      main {
-        padding: 0 14px 40px;
-      }
-
-      .search-box {
-        display: block;
-        margin: 10px auto 0;
-      }
     }
   </style>
 </head>
@@ -200,11 +159,11 @@
 </header>
 
 <nav>
-  <a onclick="showPage('cases')">상담 사례</a>
+  <a onclick="showPage('case')">상담 사례</a>
   <a onclick="showPage('insight')">금융 인사이트</a>
-  <a onclick="showPage('thoughts')">돈에 대한 생각</a>
-  <a onclick="showPage('planning')">기타 잡다한 이야기</a>
-    <!-- 검색창 -->
+  <a onclick="showPage('essay')">돈에 대한 생각</a>
+  <a onclick="showPage('small')">기타 잡다한 이야기</a>
+
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="검색..." onkeyup="searchPosts()">
   </div>
@@ -213,9 +172,10 @@
 <main>
 
   <!-- 상담 사례 -->
-  <section id="cases" class="page-section active">
+  <section id="case" class="page-section active">
     <h2>상담 사례 (Case Study)</h2>
     <p class="category-description">실제 상담 경험을 바탕으로 재무 문제와 해결 과정을 사례 중심으로 풀어냅니다.</p>
+
     <ul>
       <li>
         <a href="case/case001.html" class="case-link">
@@ -223,6 +183,7 @@
           가장 먼저 문의하신 말씀이 곧 퇴직이라 퇴직연금을 IRP 또는 현금으로 받아야 하는데 어떻게 하는 것이 좋을지..
         </a>
       </li>
+
       <li>
         <a href="case/case002.html" class="case-link">
           <h4>[단체실손보험에서 개인실손보험으로 전환]</h4>
@@ -239,7 +200,7 @@
 
     <ul>
       <li>
-        <a href="insight/insight001.html" class="case-link">
+        <a href="insight/insight001.html" class="insight-link">
           <h4>[2026.2월 다주택자의 주택 양도]</h4>
           2025.10.15 정부의 부동산 정책 발표와 2026.2월 전후 주택공급 대책으로 시장 변화가 감지되고 있습니다.
         </a>
@@ -247,20 +208,21 @@
     </ul>
   </section>
 
-  <!-- 컨설턴트의 생각 -->
-  <section id="thoughts" class="page-section">
+  <!-- 돈에 대한 생각 -->
+  <section id="essay" class="page-section">
     <h2>돈에 대한 생각 (Essay)</h2>
     <p class="category-description">사람과 돈, 신뢰와 리스크, 돈을 둘러싼 심리와 오해를 다룹니다.</p>
 
     <ul>
       <li>
-        <a href="essay/essay001.html" class="case-link">
+        <a href="essay/essay001.html" class="essay-link">
           <h4>[돈을 바라보는 투자자의 자세]</h4>
-          FPC의 저서 [재무설계와 금융상품(저자 : 김설)]에서도 언급했던 내용인데, 앙드레 코스톨라니는..
+          FPC의 저서 [재무설계와 금융상품]에서도 언급했던 내용인데, 앙드레 코스톨라니는..
         </a>
       </li>
+
       <li>
-        <a href="essay/essay002.html" class="case-link">
+        <a href="essay/essay002.html" class="essay-link">
           <h4>[투자로 돈을 벌고 싶다면 알아야 할 것]</h4>
           투자로 돈을 벌고 싶다면 필히 생각해야 하는 것이 투자위험입니다. 투자는 일반 저축과..
         </a>
@@ -269,13 +231,13 @@
   </section>
 
   <!-- 기타 잡다한 이야기 -->
-  <section id="planning" class="page-section">
+  <section id="small" class="page-section">
     <h2>기타 잡다한 이야기 (Small Talk)</h2>
     <p class="category-description">꼭 재무설계나 돈에 대한 것이 아니여도 다양한 얘기들을 기록합니다.</p>
 
     <ul>
       <li>
-        <a href="small/small001.html" class="case-link">
+        <a href="small/small001.html" class="small-link">
           <h4>[휴대폰 인물사진을 찍을 때 모델 배경으로 파란하늘이 나오게 하고 싶으면..]</h4>
         </a>
       </li>

@@ -6,8 +6,8 @@
 const fullPath = window.location.pathname;
 const currentFile = fullPath.split('/').pop();
 
-// 폴더 경로만 정확히 추출
-const basePath = fullPath.substring(0, fullPath.lastIndexOf('/') + 1);
+// 절대 경로 기반 폴더 경로
+const basePath = window.location.origin + fullPath.substring(0, fullPath.lastIndexOf('/') + 1);
 
 // 번호 추출 (001, 002 등)
 const currentNum = parseInt(currentFile.match(/\d+/)[0], 10);
@@ -44,30 +44,33 @@ const goNext = () => movePost(1);
 
 /* ----------------------------
    홈으로 돌아가기 기능
-   (현재 카테고리 기억)
 ----------------------------- */
 const goHome = () => {
-  // prefix가 카테고리 이름과 동일하므로 그대로 사용
-  location.href = `../index.html#${prefix}`;
+  let target = prefix;
+
+  // index.html의 실제 id는 case
+  if (prefix === "case") {
+    target = "case";
+  }
+
+  location.href = `${window.location.origin}/react/blog/index.html#${target}`;
 };
 
 /* ----------------------------
    글 제목 자동 표시 기능
 ----------------------------- */
 const loadTitle = () => {
-  fetch("../index.html")
+  fetch(`${window.location.origin}/react/blog/index.html`)
     .then(res => res.text())
     .then(html => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
 
-      // index.html의 모든 글 링크 가져오기
       const links = doc.querySelectorAll("a.case-link, a.essay-link, a.insight-link, a.small-link");
 
       links.forEach(link => {
         const href = link.getAttribute("href");
 
-        // 현재 페이지 파일명과 일치하는 링크 찾기
         if (href.includes(currentFile)) {
           const title = link.querySelector("h4").innerText;
           document.getElementById("post-title").innerText = title;
