@@ -4,7 +4,10 @@
 
 // 현재 파일 경로 정보
 const fullPath = window.location.pathname;
-const currentFile = fullPath.split('/').pop();
+let currentFile = fullPath.split('/').pop();
+if (!currentFile.includes('.html')) {
+  currentFile = currentFile + '.html';
+}
 
 // prefix를 "폴더명"으로 추출 (가장 안정적)
 const pathParts = fullPath.split('/');
@@ -55,7 +58,7 @@ const goHome = () => {
    글 제목 자동 표시 기능
 ----------------------------- */
 const loadTitle = () => {
-  fetch("../index.html")
+  fetch(`${window.location.origin}/index.html?ver=${Date.now()}`)
     .then(res => res.text())
     .then(html => {
       const parser = new DOMParser();
