@@ -8,6 +8,7 @@ let currentFile = fullPath.split('/').pop();
 if (!currentFile.includes('.html')) {
   currentFile = currentFile + '.html';
 }
+console.log("currentFile =", currentFile);
 
 // prefix를 "폴더명"으로 추출 (가장 안정적)
 const pathParts = fullPath.split('/');
