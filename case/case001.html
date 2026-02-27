@@ -214,13 +214,13 @@
       const currentFile = fullPath.split('/').pop();
       const basePath = fullPath.replace(currentFile, "");
 
-      // 숫자 추출 (001 → 1)
+      // 숫자 추출 (001 → 1) //
       const currentNum = parseInt(currentFile.match(/\d+/)[0], 10);
 
-      // prefix 추출 (case, essay, insight 등)
+      // prefix 추출 (case, essay, insight 등) //
       const prefix = currentFile.replace(/\d+\.html/, "");
 
-      // 이동 함수
+      // 이동 함수 //
       const move = (offset) => {
         const next = currentNum + offset;
         if (next < 1) {
