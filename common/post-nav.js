@@ -6,14 +6,15 @@
 const fullPath = window.location.pathname;
 const currentFile = fullPath.split('/').pop();
 
-// 폴더 경로만 정확히 추출
-const basePath = fullPath.substring(0, fullPath.lastIndexOf('/') + 1);
+// prefix를 "폴더명"으로 추출 (가장 안정적)
+const pathParts = fullPath.split('/');
+const prefix = pathParts[pathParts.length - 2];   // case / essay / insight / small
+
+// 절대 경로 기반 폴더 경로
+const basePath = window.location.origin + fullPath.substring(0, fullPath.lastIndexOf('/') + 1);
 
 // 번호 추출 (001, 002 등)
 const currentNum = parseInt(currentFile.match(/\d+/)[0], 10);
-
-// prefix 추출 (case, essay, insight, small 등)
-const prefix = currentFile.replace(/\d+\.html/, "");
 
 /* ----------------------------
    이전/다음 글 이동 기능
