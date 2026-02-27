@@ -6,8 +6,8 @@
 const fullPath = window.location.pathname;
 const currentFile = fullPath.split('/').pop();
 
-// 절대 경로 기반 폴더 경로
-const basePath = window.location.origin + fullPath.substring(0, fullPath.lastIndexOf('/') + 1);
+// 폴더 경로만 정확히 추출
+const basePath = fullPath.substring(0, fullPath.lastIndexOf('/') + 1);
 
 // 번호 추출 (001, 002 등)
 const currentNum = parseInt(currentFile.match(/\d+/)[0], 10);
@@ -44,23 +44,17 @@ const goNext = () => movePost(1);
 
 /* ----------------------------
    홈으로 돌아가기 기능
+   (현재 카테고리 기억)
 ----------------------------- */
 const goHome = () => {
-  let target = prefix;
-
-  // index.html의 실제 id는 case
-  if (prefix === "case") {
-    target = "case";
-  }
-
-  location.href = `${window.location.origin}/react/blog/index.html#${target}`;
+  location.href = `../index.html#${prefix}`;
 };
 
 /* ----------------------------
    글 제목 자동 표시 기능
 ----------------------------- */
 const loadTitle = () => {
-  fetch(`${window.location.origin}/react/blog/index.html`)
+  fetch("../index.html")
     .then(res => res.text())
     .then(html => {
       const parser = new DOMParser();
