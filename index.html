@@ -289,8 +289,10 @@
 </footer>
 
 <script>
+  // 푸터 연도 자동 업데이트
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  // 카테고리 전환
   function showPage(pageId) {
     const pages = document.querySelectorAll('.page-section');
     pages.forEach(p => p.classList.remove('active'));
@@ -300,6 +302,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // 검색 기능
   function searchPosts() {
     const keyword = document.getElementById('searchInput').value.toLowerCase();
     const sections = document.querySelectorAll('.page-section ul li');
@@ -309,7 +312,14 @@
       item.style.display = text.includes(keyword) ? "block" : "none";
     });
   }
-</script>
 
+  // 🔥 URL hash(#thoughts 등) 자동 인식 → 해당 탭 열기
+  window.addEventListener("load", () => {
+    const hash = location.hash.replace("#", "");
+    if (hash) {
+      showPage(hash);
+    }
+  });
+</script>
 </body>
 </html>

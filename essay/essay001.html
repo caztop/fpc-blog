@@ -116,7 +116,7 @@
       것입니다. 그리고 주변에서 투자자의 그런 심리를 이용하여 자신의 이득을 챙기려는 시도는 동서고금을 
       막론하고 과거부터 지금까지 계속되고 있습니다. <br>
       투자해서 돈을 불리는 것은 좋은 일입니다. 하지만 이렇게 되기 위해서는 투자를 하기 전에 투자자의 자세를 
-      갖추는 것이 선행되어야 할 것입니다.   
+      갖추는 것이 선행되어야 할 것입니다. 
     </p><br><br>
 
     <!-- 이전/다음 글 네비게이션 -->
@@ -127,7 +127,7 @@
 
     <!-- 홈으로 돌아가기 -->
     <div class="back-home">
-      <a href="../index.html">홈으로 돌아가기</a>
+      <a href="../index.html#thoughts">홈으로 돌아가기</a>
     </div>
 
     <script>
@@ -136,19 +136,22 @@
       const basePath = fullPath.replace(currentFile, "");
       const currentNum = parseInt(currentFile.match(/\d+/)[0], 10);
 
+      // 파일 prefix 자동 추출 (case, essay, insight 등)
+      const prefix = currentFile.replace(/\d+\.html/, "");
+
       const move = (offset) => {
-        const next = currentNum + offset;
-        if (next < 1) return alert("첫 번째 글입니다.");
+      const next = currentNum + offset;
+      if (next < 1) return alert("첫 번째 글입니다.");
 
-        const target = `${basePath}case${String(next).padStart(3, '0')}.html`;
+      const target = `${basePath}${prefix}${String(next).padStart(3, '0')}.html`;
 
-        fetch(target)
-          .then(res => res.ok ? location.href = target : alert("마지막 글입니다."))
-          .catch(() => alert("해당 글이 없습니다."));
-      };
+      fetch(target)
+        .then(res => res.ok ? location.href = target : alert("마지막 글입니다."))
+        .catch(() => alert("해당 글이 없습니다."));
+    };
 
-      const goPrev = () => move(-1);
-      const goNext = () => move(1);
+    const goPrev = () => move(-1);
+    const goNext = () => move(1);
     </script>
   </main>
 </body>
