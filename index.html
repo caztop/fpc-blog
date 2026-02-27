@@ -91,6 +91,12 @@
       color: #4a3f35;
     }
 
+    mark {
+      background-color: #fff3b0;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+
     main {
       max-width: 900px;
       margin: 30px auto;
@@ -274,21 +280,14 @@
     const pages = document.querySelectorAll('.page-section');
     const notice = document.getElementById('searchNotice');
 
-    // 탭 이름 매핑
     const names = {
       case: "상담 사례",
       insight: "금융 인사이트",
       essay: "돈에 대한 생각",
-      small: "기타 이야기"
+      small: "기타 잡다한 이야기"
     };
 
-    // 탭별 검색 결과 개수 저장
-    let counts = {
-      case: 0,
-      insight: 0,
-      essay: 0,
-      small: 0
-    };
+    let counts = { case: 0, insight: 0, essay: 0, small: 0 };
 
     pages.forEach(page => {
       const pageId = page.id;
@@ -298,25 +297,32 @@
         const text = item.innerText.toLowerCase();
         const match = text.includes(keyword);
 
-        item.style.display = match ? "block" : "none";
+        if (keyword.trim() === "") {
+          item.style.display = "block";
+          item.innerHTML = item.innerText;
+          return;
+        }
 
         if (match) {
           counts[pageId]++;
+          const regex = new RegExp(`(${keyword})`, "gi");
+          item.innerHTML = item.innerText.replace(regex, `<mark>$1</mark>`);
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
         }
       });
     });
 
-    // 탭 옆에 숫자 표시
     Object.keys(counts).forEach(id => {
       const tab = document.getElementById(`tab-${id}`);
       if (keyword.trim() === "") {
-        tab.innerText = names[id]; // 검색어 없으면 원래대로
+        tab.innerText = names[id];
       } else {
         tab.innerText = `${names[id]} (${counts[id]})`;
       }
     });
 
-    // 안내 메시지 표시
     if (keyword.trim() === "") {
       notice.style.display = "none";
       return;
