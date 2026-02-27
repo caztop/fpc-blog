@@ -97,7 +97,7 @@
 
 <body>
   <header>
-    <h1 id="post-title"></h1>
+    <h1>[돈을 바라보는 투자자의 자세]</h1>
   </header>
 
   <main>
@@ -126,11 +126,45 @@
 
     <!-- 홈으로 돌아가기 -->
     <div class="back-home">
-      <a href="#" onclick="goHome()">홈으로 돌아가기</a>
+      <a href="../index.html">홈으로 돌아가기</a>
     </div>
 
-    <!-- 공통 네비게이션 스크립트 -->
-    <script src="/common/post-nav.js"></script>
+    <script>
+      // 현재 파일명 추출
+      const fullPath = window.location.pathname;
+      const currentFile = fullPath.split('/').pop();
+      const basePath = fullPath.replace(currentFile, "");
+
+      // 숫자 추출 (001 → 1)
+      const currentNum = parseInt(currentFile.match(/\d+/)[0], 10);
+
+      // prefix 추출 (case, essay, insight 등)
+      const prefix = currentFile.replace(/\d+\.html/, "");
+
+      // 이동 함수
+      const move = (offset) => {
+        const next = currentNum + offset;
+        if (next < 1) {
+          alert("첫 번째 글입니다.");
+          return;
+        }
+
+        const target = `${basePath}${prefix}${String(next).padStart(3, '0')}.html`;
+
+        fetch(target)
+          .then(res => {
+            if (res.ok) {
+              location.href = target;
+            } else {
+              alert("마지막 글입니다.");
+            }
+          })
+          .catch(() => alert("해당 글이 없습니다."));
+      };
+
+      const goPrev = () => move(-1);
+      const goNext = () => move(1);
+    </script>
   </main>
 </body>
 </html>
