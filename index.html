@@ -156,6 +156,25 @@
   /* 📱 모바일 최적화 */
   @media (max-width: 700px) {
  
+    header.hero-header {
+      height: 180px; /* 모바일에서는 조금 더 낮게 */
+    }
+
+    .hero-text-box {
+      max-width: 85%; /* 화면 폭의 85%까지만 */
+      padding: 12px 16px; /* 패딩 축소 */
+      top: 55%; /* 살짝 아래로 */
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-text-box h1 {
+      font-size: 1.4rem; /* 텍스트 크기 축소 */
+    }
+
+    .hero-text-box p {
+      font-size: 0.9rem;
+    }
+    
     nav {
       display: flex;
       flex-direction: column;
@@ -208,7 +227,6 @@
   <a onclick="showPage('insight')" id="tab-insight">금융 인사이트</a>
   <a onclick="showPage('essay')" id="tab-essay">돈에 대한 생각</a>
   <a onclick="showPage('small')" id="tab-small">기타 잡다한 이야기</a>
-  <div></div>
 
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="검색..." onkeyup="searchPosts()">
