@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[투자로 돈을 벌고 싶다면 알아야 할 것]</title>
+
+  <style>
+    body {
+      font-family: "Pretendard", "Noto Sans KR", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f3ef;
+      color: #3a3a3a;
+      line-height: 1.7;
+    }
+
+    /* 상단 제목 영역 */
+    header {
+      background: linear-gradient(135deg, #e8dcd3, #f4ece7);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #e0d6cf;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #4a3f35;
+    }
+
+    /* 본문 */
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #ffffff;
+      padding: 30px 26px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #f0e8e2;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #4a3f35;
+      border-left: 6px solid #d8c7b9;
+      padding-left: 12px;
+      margin-top: 0;
+    }
+
+    p {
+      margin-bottom: 18px;
+      color: #4f463f;
+    }
+
+    /* 네비게이션 */
+    .post-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      font-size: 0.95rem;
+    }
+
+    .post-nav a {
+      color: #6b5b51;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .post-nav a:hover {
+      background: #e8ded7;
+    }
+
+    /* 홈으로 */
+    .back-home {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .back-home a {
+      color: #4a3f35;
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: #e8ded7;
+      transition: background 0.2s ease;
+    }
+
+    .back-home a:hover {
+      background: #d8c7b9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>[투자로 돈을 벌고 싶다면 알아야 할 것]</h1>
+  </header>
+
+  <main>
+    <p>
+      (주의 : 본 내용은 FPC의 의견이며 실제와 다를 수 있습니다.)<br>
+      투자로 돈을 벌고 싶다면 필히 생각해야 하는 것이 투자위험입니다. 투자는 일반 저축과 다릅니다. 저축은 돈을 
+      맡겨 놓고 시간이 지나면 계속 불어나지만, 투자는 시간이 지났다고 해서 꼭 불어난다고 할 수 없습니다. 
+      이유는잘 알다시피 투자는 손실이 발생할 수 있기 때문입니다. 즉, 투자위험입니다. 일반적으로 예상되는 
+      기대수익률은 저축보다 투자가 높게 예측됩니다. 예상수익률만 놓고 보면 투자가 유리해 보이지만 투자위험이 
+      있기 때문에 투자수익률=예상수익률×(1-투자위험률)과 같이 계산해 봐야합니다. 이렇게 투자수익률은 투자위험과 
+      밀접한 관계가 있는 것이고 투자시장에서 투자위험은 변동성이라 얘기하기도합니다. 즉, 가격이 오르고 내리는 
+      폭을 얘기하는 것인데 가격변동이 큰 것은 투자위험이 높은 것이고 결국 투자수익률에도 좋지 않은 것으로 
+      판단할 수 있는 것입니다. 투자상품은 저축대비 높은 수익을 기대해 볼 수 있습니다. 이 기대가 실제로 
+      이루어지기 위해서는 위험관리가 선행되어야 합니다. 그리고 위험은 투자상품 자체의 위험도 있지만 
+      <a href="essay001.html">투자자의 자세 및 마음가짐</a>이 어떠냐?도 중요한 위험 중 하나입니다.
+    </p><br><br>
+
+    <!-- 이전/다음 글 네비게이션 -->
+    <div class="post-nav">
+      <a href="#" onclick="goPrev()">← 이전 글</a>
+      <a href="#" onclick="goNext()">다음 글 →</a>
+    </div>
+
+    <!-- 홈으로 돌아가기 -->
+    <div class="back-home">
+      <a href="../index.html">홈으로 돌아가기</a>
+    </div>
+
+    <script>
+      const fullPath = window.location.pathname;
+      const currentFile = fullPath.split('/').pop();
+      const basePath = fullPath.replace(currentFile, "");
+      const currentNum = parseInt(currentFile.match(/\d+/)[0], 10);
+
+      const move = (offset) => {
+        const next = currentNum + offset;
+        if (next < 1) return alert("첫 번째 글입니다.");
+
+        const target = `${basePath}case${String(next).padStart(3, '0')}.html`;
+
+        fetch(target)
+          .then(res => res.ok ? location.href = target : alert("마지막 글입니다."))
+          .catch(() => alert("해당 글이 없습니다."));
+      };
+
+      const goPrev = () => move(-1);
+      const goNext = () => move(1);
+    </script>
+  </main>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[돈을 바라보는 투자자의 자세]</title>
+
+  <style>
+    body {
+      font-family: "Pretendard", "Noto Sans KR", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f3ef;
+      color: #3a3a3a;
+      line-height: 1.7;
+    }
+
+    /* 상단 제목 영역 */
+    header {
+      background: linear-gradient(135deg, #e8dcd3, #f4ece7);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 1px solid #e0d6cf;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #4a3f35;
+    }
+
+    /* 본문 */
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #ffffff;
+      padding: 30px 26px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #f0e8e2;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #4a3f35;
+      border-left: 6px solid #d8c7b9;
+      padding-left: 12px;
+      margin-top: 0;
+    }
+
+    p {
+      margin-bottom: 18px;
+      color: #4f463f;
+    }
+
+    /* 네비게이션 */
+    .post-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      font-size: 0.95rem;
+    }
+
+    .post-nav a {
+      color: #6b5b51;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .post-nav a:hover {
+      background: #e8ded7;
+    }
+
+    /* 홈으로 */
+    .back-home {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .back-home a {
+      color: #4a3f35;
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: #e8ded7;
+      transition: background 0.2s ease;
+    }
+
+    .back-home a:hover {
+      background: #d8c7b9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>[돈을 바라보는 투자자의 자세]</h1>
+  </header>
+
+  <main>
+    <p>
+      (주의 : 본 내용은 FPC의 의견이며 실제와 다를 수 있습니다.)<br>
+      FPC의 저서 [재무설계와 금융상품(저자 : 김설)]에서도 언급했던 내용인데, 앙드레 코스톨라니는 투자자로서 
+      본인의 평생업적을 담은 책에서 돈에 대해 이렇게 얘기했습니다. "돈! 뜨겁게 사랑하되 차갑게 다루어라". 
+      이는 투자자가 갖추어야 할 자세 및 마음가짐에 대해 말한 것으로 투자명언이라 할 수 있습니다. 투자자는 
+      투자수익에 대한 열정도 필요하지만 마음가짐은 이성적이며 객관적인 상태를 유지해야 한다는 것입니다. 
+      마음가짐을 이성적이며 객관적인 상태로 유지하기 위해서는 소위 말하는 팔랑귀, 조바심, 질투, 두려움 등을 
+      멀리해야 하고 남보다 앞선 통찰력, 객관적인 데이터, 공신력 있는 정보, 냉철한 결정 등이 필요합니다. 
+      적지 않은 사람은 본인이 투자한 것은 가격이 오를 것이라는 막연한 기대감을 갖곤합니다. 예를 들어 내가 
+      산 주식, 내가 산 부동산은 가격이 올라갈 것이라는 기대를 하곤 합니다. 여기에 어떤 근거가 있는 경우도 
+      있고 아닌 경우도 있습니다. 그런데 문제는 투자근거로 생각한 것 자체가 기대감을 담은 경우도 적지않다라는 
+      것입니다. 그리고 주변에서 투자자의 그런 심리를 이용하여 자신의 이득을 챙기려는 시도는 동서고금을 
+      막론하고 과거부터 지금까지 계속되고 있습니다. <br>
+      투자해서 돈을 불리는 것은 좋은 일입니다. 하지만 이렇게 되기 위해서는 투자를 하기 전에 투자자의 자세를 
+      갖추는 것이 선행되어야 할 것입니다.   
+    </p><br><br>
+
+    <!-- 이전/다음 글 네비게이션 -->
+    <div class="post-nav">
+      <a href="#" onclick="goPrev()">← 이전 글</a>
+      <a href="#" onclick="goNext()">다음 글 →</a>
+    </div>
+
+    <!-- 홈으로 돌아가기 -->
+    <div class="back-home">
+      <a href="../index.html">홈으로 돌아가기</a>
+    </div>
+
+    <script>
+      const fullPath = window.location.pathname;
+      const currentFile = fullPath.split('/').pop();
+      const basePath = fullPath.replace(currentFile, "");
+      const currentNum = parseInt(currentFile.match(/\d+/)[0], 10);
+
+      const move = (offset) => {
+        const next = currentNum + offset;
+        if (next < 1) return alert("첫 번째 글입니다.");
+
+        const target = `${basePath}case${String(next).padStart(3, '0')}.html`;
+
+        fetch(target)
+          .then(res => res.ok ? location.href = target : alert("마지막 글입니다."))
+          .catch(() => alert("해당 글이 없습니다."));
+      };
+
+      const goPrev = () => move(-1);
+      const goNext = () => move(1);
+    </script>
+  </main>
+</body>
+</html>
