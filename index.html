@@ -79,7 +79,7 @@
 
     .search-box {
       display: inline-block;
-      margin-left: 20px;
+      margin-left: 40px;
     }
 
     .search-box input {
@@ -154,21 +154,22 @@
     }
 
   /* 📱 모바일 최적화 */
-  @media (max-width: 600px) {
+  @media (max-width: 550px) {
  
     header.hero-header {
       height: 180px; /* 모바일에서는 조금 더 낮게 */
     }
 
     .hero-text-box {
-      max-width: 85%;
-      padding: 5px 5px; /* 패딩 축소 */
+      max-width: 95%;
+      padding: 5px 15px;
       top: 55%; /* 살짝 아래로 */
       transform: translate(-50%, -50%);
     }
 
     .hero-text-box h1 {
       font-size: 1.3rem;
+      margin-top: 10px;
     }
 
     .hero-text-box p {
@@ -201,7 +202,7 @@
     }
 
     .search-box input {
-      width: 100%;
+      width: 85%;
       padding: 10px 12px;
       font-size: 1rem;
     }
