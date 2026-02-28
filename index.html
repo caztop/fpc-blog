@@ -155,25 +155,23 @@
 
   /* 📱 모바일 최적화 */
   @media (max-width: 550px) {
- 
     header.hero-header {
-      height: 180px; /* 모바일에서는 조금 더 낮게 */
+      height: 220px;
     }
 
     .hero-text-box {
-      max-width: 95%;
-      padding: 5px 15px;
-      top: 55%; /* 살짝 아래로 */
-      transform: translate(-50%, -50%);
+      width: 92%;
+      max-width: none;
+      padding: 10px 18px;
     }
 
     .hero-text-box h1 {
-      font-size: 1.3rem;
-      margin-top: 10px;
+      font-size: 1.25rem;
     }
 
     .hero-text-box p {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      line-height: 1.4;
     }
     
     nav {
@@ -216,7 +214,6 @@
 </head>
 
 <body>
-
 <header class="hero-header">
   <div class="hero-text-box">
     <h1>FPC의 재무설계 노트</h1>
