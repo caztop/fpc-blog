@@ -193,6 +193,12 @@
       font : bold;
     }
 
+    nav a.active {
+      background: #6b5b51;
+      color: #fff;
+      font-weight: 600;
+    }
+
     .search-box {
       width: 100%;
       margin: 0;
@@ -342,11 +348,17 @@
 
   // 카테고리 전환
   function showPage(pageId) {
+    // 페이지 전환
     const pages = document.querySelectorAll('.page-section');
     pages.forEach(p => p.classList.remove('active'));
-
     document.getElementById(pageId).classList.add('active');
 
+    // 네비게이션 active 처리
+    const links = document.querySelectorAll('nav a');
+    links.forEach(link => link.classList.remove('active'));
+    document.getElementById(`tab-${pageId}`).classList.add('active');
+
+    // 스크롤 맨 위로
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -429,6 +441,16 @@
     const hash = location.hash.replace("#", "");
     if (hash) {
       showPage(hash);
+    }
+  });
+
+  window.addEventListener("load", () => {
+    const hash = location.hash.replace("#", "");
+    if (hash) {
+      showPage(hash);
+    } else {
+      // 기본 탭 active 설정
+      document.getElementById("tab-case").classList.add("active");
     }
   });
 </script>
